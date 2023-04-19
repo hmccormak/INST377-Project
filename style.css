@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.container {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    margin-top: 60px; /* Add this to ensure that the container starts after the title bar */
+}
+.sidebar {
+    background-color: #D3D0CB;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 60px; /* Add this to ensure that the sidebar starts after the title bar */
+    bottom: 0;
+    width: 200px;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+.main {
+    background-color: #E7E5DF;
+    margin-left: 200px;
+    padding: 20px;
+    box-sizing: border-box;
+    flex: 1;
+    margin-top: 60px; /* Add this to ensure that the main content starts after the title bar */
+}
+.title-bar {
+    background-color: #393E41;
+    color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
