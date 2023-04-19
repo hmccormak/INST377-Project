@@ -35,7 +35,7 @@ body {
     ‘Bitsream Vera Sans’, ‘Trebuchet MS’, Verdana, ‘Verdana Ref’, sans-serif;
   font-weight: 400;
   line-height: 1.5;
-  background-color: #faf8d4;
+  background-color: #C7CCB9;
 }
 
 a {
@@ -120,7 +120,7 @@ form {
   /* this will push other blocks out of the way */
 
   /* colors */
-  background-color: #91818a;
+  background-color: #87A878;
   color: #000000;
 
   /* shapes */
@@ -145,7 +145,7 @@ form {
   */
 
 .box {
-  background-color: rgba(239, 239, 239, 0.4);
+  background-color: #B0BC98;
   border: 2px inset;
   border-radius: 4px;
   width: fit-content;
@@ -156,7 +156,7 @@ form {
 }
 
 .input_box {
-    background-color: rgba(239, 239, 239, 0.4);
+    background-color: #B0BC98;
     width: fit-content;
     height: fit-content;
     padding: 1.5rem;
@@ -165,7 +165,7 @@ form {
   }
 
 .data_box {
-    background-color: rgba(239, 239, 239, 0.4);
+    background-color: #CAE2BC;
     border: 2px inset;
     border-radius: 4px;
     padding: 1.5rem;
@@ -173,7 +173,7 @@ form {
   }
 
 .data_entry {
-  background-color: #ebdccb;
+  background-color: #B0BC98;
   width: 100%;
 }
 
@@ -202,7 +202,7 @@ form {
 .footer {
   flex-shrink: 0;
   padding: 1rem;
-  background-color: #91818a;
+  background-color: #87A878;
   font-size: 1.2rem;
   font-weight: 600;
   border: 2px inset;
