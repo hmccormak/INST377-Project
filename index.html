@@ -7,31 +7,49 @@
   </head>
   <div class="wrapper">
     <header class="header">
-      <h1>The Situation Room<div></div><a class="interlink" href="./url_info.html">Check a site or account</a></h1>
+      <h1>
+        The Situation Room
+        <div></div>
+        <a class="interlink" href="./url_info.html">Check a site or account</a>
+      </h1>
     </header>
     <div class="container">
       <div class="data_entry box">
-        <h3>Data Point 1</h3>
-        <div class="data_box" id="chartContainer" style="height: 300px; width: 100%;">
-        </div>
+        <h3>Who's the worst?</h3>
+        <label for="years">Filter by year:</label>
+        <select name="select year" id="years">
+          <option value="All">All</option>
+          <option value="2023">2023</option>
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          <option value="2020">2020</option>
+          <option value="2019">2019</option>
+          <option value="2018">2018</option>
+          <option value="2017">2017</option>
+          <option value="2016">2016</option>
+          <option value="2015">2015</option>
+          <option value="2014">2014</option>
+          <option value="2013">2013</option>
+          <option value="2012">2012</option>
+          <option value="2011">2011</option>
+          <option value="2010">2010</option>
+          <option value="2009">2009</option>
+          <option value="2008">2008</option>
+          <option value="2007">2007</option>
+        </select>
+        <div class="data_box" id="topFiveContainer"></div>
       </div>
       <div class="data_entry box">
-        <h3>Data Point 2</h3>
-        <div class="data_box">
-			PLACE GRAPH HERE
-		</div>
+        <h3>When was it the worst?</h3>
+        <div class="data_box" id="timelineContainer"></div>
       </div>
-	  <div class="data_entry box">
+      <div class="data_entry box">
         <h3>Data Point 3</h3>
-        <div class="data_box">
-			PLACE GRAPH HERE
-		</div>
+        <div class="data_box">PLACE GRAPH HERE</div>
       </div>
-	  <div class="data_entry box">
+      <div class="data_entry box">
         <h3>Data Point 4</h3>
-        <div class="data_box">
-			PLACE GRAPH HERE
-		</div>
+        <div class="data_box">PLACE GRAPH HERE</div>
       </div>
     </div>
     <footer class="footer">
@@ -40,3 +58,4 @@
     </footer>
     <script src="script.js"></script>
   </div>
+</html>
