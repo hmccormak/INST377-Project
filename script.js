@@ -23,7 +23,7 @@ async function mainEvent() {
   });
 }
 
-function renderTopFiveChart(data, selectedYear) {
+function renderTopFiveChart(data, selectedYear = "All") {
   const domainCounts = {};
 
   data.forEach((breach) => {
