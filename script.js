@@ -110,6 +110,7 @@ function renderBreachTimeline(data) {
       title: "Year",
       valueFormatString: "YYYY",
       intervalType: "year",
+      interval: 1,
     },
     axisY: {
       title: "Number of Breaches",
