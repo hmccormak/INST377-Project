@@ -1,8 +1,4 @@
 async function mainEvent() {
-  // Ask for API key before continuing if not in cache
-  if (localStorage.getItem("k") === null) {
-    askAPIKey();
-  }
 
   const reply = await fetch("https://haveibeenpwned.com/api/v3/breaches");
   const breaches = await reply.json();
@@ -15,6 +11,7 @@ async function mainEvent() {
 
   renderTopFiveChart(storedBreaches);
   renderBreachTimeline(storedBreaches);
+  renderPyramid(storedBreaches);
 
   const filterByYear = document.querySelector("#years");
   filterByYear.addEventListener("change", (event) => {
@@ -127,15 +124,32 @@ function renderBreachTimeline(data) {
   chart.render();
 }
 
-function askAPIKey() {
-  const apiKey = prompt("Please enter your API key:");
-  if (apiKey === null || apiKey === "") {
-    alert("API key is required to proceed.");
-    askAPIKey();
-  } else {
-    console.log("API key entered, but I wont tell.");
-    localStorage.setItem("k", btoa(apiKey));
-  }
+function renderPyramid(data) {
+  const countsByDataclassCount = {};
+  data.forEach(breach => {
+    const dataclassCount = breach.DataClasses.length;
+    countsByDataclassCount[dataclassCount] = countsByDataclassCount[dataclassCount] || 0;
+    countsByDataclassCount[dataclassCount]++;
+  });
+
+  const dataPoints = [];
+  Object.entries(countsByDataclassCount).forEach(([dataclassCount, count]) => {
+    dataPoints.push({ label: `${dataclassCount} Dataclasses`, y: count });
+  });
+
+  const chart = new CanvasJS.Chart('pyramidContainer', {
+    animationEnabled: true,
+    title: {
+      text: 'Breaches by Number of Dataclasses'
+    },
+    data: [{
+      type: 'pyramid',
+      toolTipContent: '<b>{label}</b><br>{y} breaches',
+      indexLabelFontColor: '#000',
+      dataPoints: dataPoints
+    }]
+  });
+  chart.render();
 }
 
 document.addEventListener("DOMContentLoaded", async () => mainEvent());

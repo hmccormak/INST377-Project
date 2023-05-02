@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="style.css" />
-    <script src="canvasjs.min.js"></script>
+    <script src="./canvasjs.min.js"></script>
+    <script src="./jquery-3.6.4.min.js"></script>
     <title>Have I been breached?</title>
   </head>
   <div class="wrapper">
@@ -18,19 +19,11 @@
     <div class="url_container">
       <div class="box">
         <div class="input_box">
-          <h3>Check Website</h3>
-          <form class="url_form" action="">
-            <label for="url_lookup"></label
-            ><input type="text" name="url_lookup" id="url_lookup" />
-            <button type="submit">Check Website</button>
-          </form>
-        </div>
-        <div class="input_box">
           <h3>Check your account</h3>
           <form class="email_form" action="">
             <label for="email_lookup"></label
-            ><input type="text" name="email_lookup" id="email_lookup" />
-            <button type="submit">Check my account!</button>
+            ><input type="text" name="email" id="email"/>
+            <button type="submit" id="email_lookup">Check my account!</button>
           </form>
         </div>
       </div>
@@ -58,6 +51,6 @@
       Github: hmccormak,
       <a href="https://github.com/hmccormak">https://github.com/hmccormak</a>
     </footer>
-    <script src="script.js"></script>
+    <script src="email_script.js"></script>
   </div>
 </html>
