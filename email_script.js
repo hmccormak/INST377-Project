@@ -14,19 +14,19 @@ async function mainEvent() {
 }
 
 async function emailRequest() {
-    var myHeaders = new Headers();
-    myHeaders.append("hibp-api-key", "KEY");
-    
-    var requestOptions = {
-      method: 'GET',
-      headers: myHeaders,
-      redirect: 'follow'
-    };
-    
-    fetch("https://haveibeenpwned.com/api/v3/breachedaccount/hmccormack0@gmail.com", requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
+  fetch(
+    "https://haveibeenpwned.com/api/v3/breachedaccount/hmccormack0@gmail.com ", {
+    method: "GET",
+    credentials: 'include',
+    headers: {
+      'hibp-api-key': 'KEYHERE',
+    },
+  }
+  )
+    .then((response) => response.text())
+    .then((result) => console.log(result))
+    .catch((error) => console.log("error", error));
+  console.log(response)
 }
 
 function askAPIKey() {

@@ -1,23 +1,40 @@
 async function mainEvent() {
 
-  const reply = await fetch("https://haveibeenpwned.com/api/v3/breaches");
-  const breaches = await reply.json();
+  if (localStorage.getItem("b") === null | localStorage.getItem("b") === '{}') {
+    const reply = await fetch("https://haveibeenpwned.com/api/v3/breaches");
+    const breaches = await reply.json();
+    localStorage.setItem("b", JSON.stringify(breaches));
+  }
 
-  console.log(breaches);
-
-  localStorage.setItem("b", JSON.stringify(breaches));
   const storedBreaches = JSON.parse(localStorage.getItem("b"));
-  console.log(storedBreaches);
-
+  console.log(storedBreaches)
+  
   renderTopFiveChart(storedBreaches);
   renderBreachTimeline(storedBreaches);
   renderPyramid(storedBreaches);
+
+  const refreshData = document.querySelector("#refresh");
+  refreshData.addEventListener("click", (event) => {
+    console.log("refreshing...")
+    let b = refreshStorage();
+    localStorage.setItem("b", JSON.stringify(b));
+  });
 
   const filterByYear = document.querySelector("#years");
   filterByYear.addEventListener("change", (event) => {
     const selectedYear = event.target.value;
     renderTopFiveChart(storedBreaches, selectedYear);
+    const storedBreaches = JSON.parse(localStorage.getItem("b"));
   });
+}
+
+async function refreshStorage() {
+  if (localStorage.getItem("b") ===! null) {
+    localStorage.removeItem("b");
+    const reply = await fetch("https://haveibeenpwned.com/api/v3/breaches");
+    const breaches = await reply.json();
+    return breaches
+  }
 }
 
 function renderTopFiveChart(data, selectedYear = "All") {
