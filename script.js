@@ -16,8 +16,11 @@ async function mainEvent() {
   const refreshData = document.querySelector("#refresh");
   refreshData.addEventListener("click", (event) => {
     console.log("refreshing...")
-    let b = refreshStorage();
-    localStorage.setItem("b", JSON.stringify(b));
+    refreshStorage();
+    const storedBreaches = JSON.parse(localStorage.getItem("b"));
+    renderTopFiveChart(storedBreaches);
+    renderBreachTimeline(storedBreaches);
+    renderPyramid(storedBreaches);
   });
 
   const filterByYear = document.querySelector("#years");
@@ -30,10 +33,10 @@ async function mainEvent() {
 
 async function refreshStorage() {
   if (localStorage.getItem("b") ===! null) {
-    localStorage.removeItem("b");
+    localStorage.clear();
     const reply = await fetch("https://haveibeenpwned.com/api/v3/breaches");
     const breaches = await reply.json();
-    return breaches
+    localStorage.setItem("b", JSON.stringify(breaches));
   }
 }
 
