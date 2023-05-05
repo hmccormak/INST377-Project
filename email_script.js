@@ -24,7 +24,7 @@ async function emailRequest() {
   };
   
   // email hardcoded for testing
-  fetch("https://haveibeenpwned.com/api/v3/breachedaccount/hmccormack0@gmail.com ", requestOptions)
+  await fetch("https://haveibeenpwned.com/api/v3/breachedaccount/hmccormack0@gmail.com ", requestOptions)
     .then(response => response.text())
     .then(result => console.log(result))
     .catch(error => console.log('error', error));

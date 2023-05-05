@@ -3,7 +3,6 @@
   <head>
     <link rel="stylesheet" href="style.css" />
     <script src="./canvasjs.min.js"></script>
-    <script src="./jquery-3.6.4.min.js"></script>
     <title>Have I been breached?</title>
   </head>
   <div class="wrapper">
@@ -14,22 +13,10 @@
         <a class="interlink" href="./index.html"
           >Return to the Situation Room</a
         >
+        <div><button id="refresh">Refresh Dataset</button></div>
       </h1>
     </header>
     <div class="url_container">
-      <div class="box">
-        <div class="input_box">
-          <h3>Check your account</h3>
-          <form class="email_form" action="">
-            <label for="email_lookup"></label
-            ><input type="text" name="pass" id="pass"/>
-            <button type="submit" id="pass_lookup">Check my account!</button>
-          </form>
-        </div>
-      </div>
-      <div class="box">
-        <h3>DATA GRAPH</h3>
-      </div>
       <div class="box">
         <ol>
           <h3>WEBSITE INFORMATION</h3>
@@ -46,11 +33,21 @@
           <h4>Actions to take:</h4>
         </ol>
       </div>
+      <div class="box">
+        <div class="input_box">
+          <h3>Check a website</h3>
+          <form class="site_form" action="">
+            <label for="site_lookup"></label
+            ><input type="text" name="site" id="site"/>
+            <button type="button" id="site_lookup">Check this site!</button>
+          </form>
+        </div>
+      </div>
     </div>
     <footer class="footer">
       Github: hmccormak,
       <a href="https://github.com/hmccormak">https://github.com/hmccormak</a>
     </footer>
-    <script src="password_script.js"></script>
+    <script src="web_script.js"></script>
   </div>
 </html>
