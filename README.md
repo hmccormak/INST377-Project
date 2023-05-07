@@ -2,4 +2,4 @@
 
 Page can be found at: https://hmccormak.github.io/INST377-Project/
 
-It will ask for an API key to haveibeenpwned, but can be bypassed by typing in anything.
+Gives data visualizations from HIBP via canvasJS on the first page, and the second page allows to lookup specific sites and passwords
