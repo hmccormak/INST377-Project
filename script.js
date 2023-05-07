@@ -1,21 +1,23 @@
 async function mainEvent() {
-
-  if (localStorage.getItem("b") === null | localStorage.getItem("b") === '{}') {
+  if (
+    (localStorage.getItem("b") === null) |
+    (localStorage.getItem("b") === "{}")
+  ) {
     const reply = await fetch("https://haveibeenpwned.com/api/v3/breaches");
     const breaches = await reply.json();
     localStorage.setItem("b", JSON.stringify(breaches));
   }
 
   const storedBreaches = JSON.parse(localStorage.getItem("b"));
-  console.log(storedBreaches)
-  
+  console.log(storedBreaches);
+
   renderTopFiveChart(storedBreaches);
   renderBreachTimeline(storedBreaches);
   renderPyramid(storedBreaches);
 
   const refreshData = document.querySelector("#refresh");
   refreshData.addEventListener("click", (event) => {
-    console.log("refreshing...")
+    console.log("refreshing...");
     refreshStorage();
     const storedBreaches = JSON.parse(localStorage.getItem("b"));
     renderTopFiveChart(storedBreaches);
@@ -27,16 +29,16 @@ async function mainEvent() {
   filterByYear.addEventListener("change", (event) => {
     const selectedYear = event.target.value;
     renderTopFiveChart(storedBreaches, selectedYear);
-    const storedBreaches = JSON.parse(localStorage.getItem("b"));
   });
 }
 
 async function refreshStorage() {
-  if (localStorage.getItem("b") ===! null) {
+  if (localStorage.getItem("b") === !null) {
     localStorage.clear();
     const reply = await fetch("https://haveibeenpwned.com/api/v3/breaches");
     const breaches = await reply.json();
     localStorage.setItem("b", JSON.stringify(breaches));
+    const storedBreaches = JSON.parse(localStorage.getItem("b"));
   }
 }
 
@@ -146,9 +148,10 @@ function renderBreachTimeline(data) {
 
 function renderPyramid(data) {
   const countsByDataclassCount = {};
-  data.forEach(breach => {
+  data.forEach((breach) => {
     const dataclassCount = breach.DataClasses.length;
-    countsByDataclassCount[dataclassCount] = countsByDataclassCount[dataclassCount] || 0;
+    countsByDataclassCount[dataclassCount] =
+      countsByDataclassCount[dataclassCount] || 0;
     countsByDataclassCount[dataclassCount]++;
   });
 
@@ -157,17 +160,19 @@ function renderPyramid(data) {
     dataPoints.push({ label: `${dataclassCount} Dataclasses`, y: count });
   });
 
-  const chart = new CanvasJS.Chart('pyramidContainer', {
+  const chart = new CanvasJS.Chart("pyramidContainer", {
     animationEnabled: true,
     title: {
-      text: 'Breaches by Number of Dataclasses'
+      text: "Breaches by Number of Dataclasses",
     },
-    data: [{
-      type: 'pyramid',
-      toolTipContent: '<b>{label}</b><br>{y} breaches',
-      indexLabelFontColor: '#000',
-      dataPoints: dataPoints
-    }]
+    data: [
+      {
+        type: "pyramid",
+        toolTipContent: "<b>{label}</b><br>{y} breaches",
+        indexLabelFontColor: "#000",
+        dataPoints: dataPoints,
+      },
+    ],
   });
   chart.render();
 }

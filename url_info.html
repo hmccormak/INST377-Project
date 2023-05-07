@@ -18,30 +18,44 @@
     </header>
     <div class="url_container">
       <div class="box">
-        <ol>
-          <h3>WEBSITE INFORMATION</h3>
-          <h4>Name:</h4>
-          <h4>Url:</h4>
-          <h4>Breached Accounts:</h4>
-        </ol>
-      </div>
-      <div class="box">
-        <ol>
-          <h3>ACCOUNT STATUS</h3>
-          <h4>Email:</h4>
-          <h4>Status:</h4>
-          <h4>Actions to take:</h4>
-        </ol>
-      </div>
-      <div class="box">
         <div class="input_box">
           <h3>Check a website</h3>
           <form class="site_form" action="">
             <label for="site_lookup"></label
-            ><input type="text" name="site" id="site"/>
+            ><input type="text" name="site" id="site" />
             <button type="button" id="site_lookup">Check this site!</button>
           </form>
         </div>
+        <div class="input_box">
+          <h3>Check a password</h3>
+          <form class="site_form" action="">
+            <label for="pass_lookup"></label
+            ><input type="text" name="pass" id="pass" />
+            <button type="button" id="pass_lookup">Check this password!</button>
+          </form>
+        </div>
+      </div>
+      <div class="box">
+        <ol>
+          <h3>Website Information</h3>
+          <h4 id="site_name">Name:</h4>
+          <h4 id="date">Breach date:</h4>
+          <h4 id="count">Breached Accounts:</h4>
+        </ol>
+      </div>
+      <div class="box">
+        <ol>
+          <h3>Password Status</h3>
+          <h4 id="hash_info">SHA1 hash:</h4>
+          <h4 id="exposures">Breach count:</h4>
+          <h4 id="verdict">Strength:</h4>
+        </ol>
+      </div>
+      <div class="box">
+        <ol>
+          <h3>More Website Information</h3>
+          <h4 id="site_blurb"></h4>
+        </ol>
       </div>
     </div>
     <footer class="footer">
