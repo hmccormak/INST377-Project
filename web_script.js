@@ -17,27 +17,31 @@ async function mainEvent() {
     const siteName = siteInput.value;
     const site = storedBreaches.find((breach) => breach.Domain === siteName);
     console.log(site);
-    
-    let outName = document.getElementById('site_name');
-    let outDate = document.getElementById('date');
-    let outCount = document.getElementById('count');
-    let outBlurb = document.getElementById('site_blurb');
-    
+
+    // i have no idea why i need to do this but the other queryselector is fine
+    let outName = document.querySelector('#name');
+    const nameSpan = outName.querySelector('span');
+    let outDate = document.querySelector("#date");
+    const dateSpan = outDate.querySelector('span');
+    let outCount = document.querySelector("#count");
+    const countSpan = outCount.querySelector('span');
+    const outBlurb = document.querySelector("#site_blurb");
+
     if (!site) {
-      outName.innerHTML = 'Name: Not found in DB!';
-      outDate.innerHTML = 'Breach date: Safe!';
-      outCount.innerHTML = 'Breach count: Safe!';
-      outBlurb.innerHTML = 'Safe!';
+      nameSpan.dataset.after = "Not found in DB!";
+      dateSpan.dataset.after = "Safe!";
+      countSpan.dataset.after = "Safe!";
+      outBlurb.innerHTML = "Safe!";
     } else {
-      outName.innerHTML = `Name: ${site.Title}`
-      outDate.innerHTML = `Date: ${site.BreachDate}`
-      outCount.innerHTML = `Breach count: ${site.PwnCount}`
-      outBlurb.innerHTML = `${site.Description}`
+      nameSpan.dataset.after = site.Title;
+      dateSpan.dataset.after = site.BreachDate;
+      countSpan.dataset.after = site.PwnCount;
+      outBlurb.innerHTML = site.Description;
     }
   });
 
-  const passLookupButton = document.querySelector('#pass_lookup');
-  passLookupButton.addEventListener('click', async (event) =>{
+  const passLookupButton = document.querySelector("#pass_lookup");
+  passLookupButton.addEventListener("click", async (event) => {
     const passInput = document.querySelector("#pass");
     const pass = passInput.value;
     console.log(passInput);
@@ -49,24 +53,55 @@ async function mainEvent() {
       .map((b) => b.toString(16).padStart(2, "0"))
       .join("");
 
-    hashSlice = shaPass.slice(0, 5);
+    hashPrefix = shaPass.slice(0, 5);
+    hashSuffix = shaPass.slice(5);
     console.log(shaPass);
 
-    const passReply = await fetch(`https://api.pwnedpasswords.com/range/${hashSlice}`);
+    const passReply = await fetch(
+      `https://api.pwnedpasswords.com/range/${hashPrefix}`
+    );
     const passBody = await passReply.text();
     console.log(passBody);
 
-    matchCount = passBody.length;
-    console.log(matchCount);
+    const lines = passBody.trim().split("\n");
 
-    let outHash = document.getElementById('hash_info');
-    let outPwn = document.getElementById('exposures');
-    let outJudge = document.getElementById('verdict');
+    // Find the line that matches the suffix
+    let match = lines.find((line) => line.startsWith(hashSuffix.toUpperCase()));
 
-    outHash.innerHTML = `SHA1 hash: ${shaPass}`;
-    outPwn.innerHTML = `Breach count: ${matchCount}`;
-    outJudge.innerHTML = 'Strength: Proabably not good'
+    const hashInfoSpan = document.querySelector("#hash_info .no-bold");
+    const exposuresSpan = document.querySelector("#exposures .no-bold");
+    const verdictSpan = document.querySelector("#verdict .no-bold");
+
+    // If there is a match, extract the count
+    if (match) {
+      match = match.replace(/\r$/, "");
+      console.log(match.slice(36));
+
+      const matchCount = parseInt(match.slice(36));
+
+      hashInfoSpan.dataset.after = shaPass;
+      exposuresSpan.dataset.after = matchCount;
+      let judgement = verdict(matchCount);
+      verdictSpan.dataset.after = judgement;
+    } else {
+      const matchCount = 0;
+
+      hashInfoSpan.dataset.after = shaPass;
+      exposuresSpan.dataset.after = matchCount;
+      let judgement = verdict(matchCount);
+      verdictSpan.dataset.after = judgement;
+    }
   });
+}
+
+function verdict(count) {
+  if (count < 1) {
+    return "Safe!";
+  } else if (count < 100) {
+    return "Breached!";
+  } else {
+    return "Everyone knows it!";
+  }
 }
 
 async function refreshStorage() {

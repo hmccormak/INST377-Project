@@ -186,6 +186,13 @@ form {
     width: 100%;
   }
 
+  .no-bold::after {
+    content: attr(data-after);
+    font-weight: normal;
+    display: inline-block;
+    margin-left: 5px;
+  }
+
   .pyramid_box {
     background-color: #CAE2BC;
     border: 2px inset;
