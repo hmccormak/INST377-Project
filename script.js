@@ -169,6 +169,8 @@ function renderPyramid(data) {
       {
         type: "pyramid",
         toolTipContent: "<b>{label}</b><br>{y} breaches",
+        indexLabelFontSize: 18,
+        valueRepresents: "area",
         indexLabelFontColor: "#000",
         dataPoints: dataPoints,
       },
