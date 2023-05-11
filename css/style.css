@@ -145,6 +145,10 @@ form {
     And will be what displays in your client
   */
 
+#link {
+  font-size: 1rem;
+}
+
 .box {
   background-color: #DEE7E7;
   border: 2px inset;
@@ -299,7 +303,7 @@ form label {
   /* check it out by using your developer tools to shrink your screen-size */
   html {
     background-color: #fff;
-    font-size: 32px;
+    font-size: 24px;
     min-width: 300px;
     overflow-x: hidden;
     overflow-y: scroll;
