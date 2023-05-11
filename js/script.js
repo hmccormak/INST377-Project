@@ -38,7 +38,6 @@ async function refreshStorage() {
     const reply = await fetch("https://haveibeenpwned.com/api/v3/breaches");
     const breaches = await reply.json();
     localStorage.setItem("b", JSON.stringify(breaches));
-    const storedBreaches = JSON.parse(localStorage.getItem("b"));
   }
 }
 

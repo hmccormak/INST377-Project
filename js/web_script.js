@@ -6,7 +6,6 @@ async function mainEvent() {
     const reply = await fetch("https://haveibeenpwned.com/api/v3/breaches");
     const breaches = await reply.json();
     localStorage.setItem("b", JSON.stringify(breaches));
-    const storedBreaches = JSON.parse(localStorage.getItem("b"));
   }
 
   const storedBreaches = JSON.parse(localStorage.getItem("b"));
@@ -19,13 +18,14 @@ async function mainEvent() {
     console.log(site);
 
     // i have no idea why i need to do this but the other queryselector is fine
-    let outName = document.querySelector('#name');
-    const nameSpan = outName.querySelector('span');
+    let outName = document.querySelector("#name");
+    const nameSpan = outName.querySelector("span");
     let outDate = document.querySelector("#date");
-    const dateSpan = outDate.querySelector('span');
+    const dateSpan = outDate.querySelector("span");
     let outCount = document.querySelector("#count");
-    const countSpan = outCount.querySelector('span');
+    const countSpan = outCount.querySelector("span");
     const outBlurb = document.querySelector("#site_blurb");
+    const siteLogo = document.querySelector("#site_logo");
 
     if (!site) {
       nameSpan.dataset.after = "Not found in DB!";
@@ -37,6 +37,7 @@ async function mainEvent() {
       dateSpan.dataset.after = site.BreachDate;
       countSpan.dataset.after = site.PwnCount;
       outBlurb.innerHTML = site.Description;
+      siteLogo.src = site.LogoPath;
     }
   });
 
@@ -65,14 +66,12 @@ async function mainEvent() {
 
     const lines = passBody.trim().split("\n");
 
-    // Find the line that matches the suffix
     let match = lines.find((line) => line.startsWith(hashSuffix.toUpperCase()));
 
     const hashInfoSpan = document.querySelector("#hash_info .no-bold");
     const exposuresSpan = document.querySelector("#exposures .no-bold");
     const verdictSpan = document.querySelector("#verdict .no-bold");
 
-    // If there is a match, extract the count
     if (match) {
       match = match.replace(/\r$/, "");
       console.log(match.slice(36));
@@ -110,7 +109,6 @@ async function refreshStorage() {
     const reply = await fetch("https://haveibeenpwned.com/api/v3/breaches");
     const breaches = await reply.json();
     localStorage.setItem("b", JSON.stringify(breaches));
-    const storedBreaches = JSON.parse(localStorage.getItem("b"));
   }
 }
 

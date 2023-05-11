@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="style.css" />
-    <script src="./canvasjs.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./js/canvasjs.min.js"></script>
     <title>Have I been breached?</title>
   </head>
   <div class="wrapper">
@@ -36,19 +36,34 @@
         </div>
       </div>
       <div class="box">
-        <ol>
-          <h3>Website Information</h3>
-          <h4 id="name">Name:<span class="no-bold" data-after=""></span></h4>
-          <h4 id="date">Breach date:<span class="no-bold" data-after=""></span></h4>
-          <h4 id="count">Breached Accounts:<span class="no-bold" data-after=""></span></h4>
-        </ol>
+        <div class="box">
+          <ol>
+            <h3>Website Information</h3>
+            <h4 id="name">Name:<span class="no-bold" data-after=""></span></h4>
+            <h4 id="date">
+              Breach date:<span class="no-bold" data-after=""></span>
+            </h4>
+            <h4 id="count">
+              Breached Accounts:<span class="no-bold" data-after=""></span>
+            </h4>
+          </ol>
+        </div>
+        <div class="box">
+          <img id="site_logo" src="./images/no_image.jpg">
+        </div>
       </div>
       <div class="box">
         <ol>
           <h3>Password Status</h3>
-          <h4 id="hash_info">SHA1 hash:<span class="no-bold" data-after=""></span></h4>
-          <h4 id="exposures">Breach count:<span class="no-bold" data-after=""></span></h4>
-          <h4 id="verdict">Strength:<span class="no-bold" data-after=""></span></h4>
+          <h4 id="hash_info">
+            SHA1 hash:<span class="no-bold" data-after=""></span>
+          </h4>
+          <h4 id="exposures">
+            Breach count:<span class="no-bold" data-after=""></span>
+          </h4>
+          <h4 id="verdict">
+            Strength:<span class="no-bold" data-after=""></span>
+          </h4>
         </ol>
       </div>
       <div class="box">
@@ -62,6 +77,6 @@
       Github: hmccormak,
       <a href="https://github.com/hmccormak">https://github.com/hmccormak</a>
     </footer>
-    <script src="web_script.js"></script>
+    <script src="./js/web_script.js"></script>
   </div>
 </html>
