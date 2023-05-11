@@ -297,6 +297,22 @@ form label {
 @media only screen and (max-width: 736px) {
   /* Rules in here will only apply when a screen is the correct size */
   /* check it out by using your developer tools to shrink your screen-size */
+  html {
+    background-color: #fff;
+    font-size: 32px;
+    min-width: 300px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  
+    /* these are specific to different browsers */
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  
   .container {
     background-color: #C2E3FF;
     flex-direction: column;

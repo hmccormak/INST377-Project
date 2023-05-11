@@ -2,4 +2,6 @@
 
 Page can be found at: https://hmccormak.github.io/INST377-Project/
 
-Gives data visualizations from HIBP via canvasJS on the first page, and the second page allows to lookup specific sites and passwords
+Have I Been Breached?
+
+Mainly targets desktop clients of all browsers, but is also compatible with mobile devices (only tested on android).
