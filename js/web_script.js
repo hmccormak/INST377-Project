@@ -17,7 +17,7 @@ async function mainEvent() {
     const site = storedBreaches.find((breach) => breach.Domain === siteName);
     console.log(site);
 
-    // i have no idea why i need to do this but the other queryselector is fine
+    // i have no idea why i need to do this but the other queryselectors are fine
     let outName = document.querySelector("#name");
     const nameSpan = outName.querySelector("span");
     let outDate = document.querySelector("#date");
@@ -32,12 +32,17 @@ async function mainEvent() {
       dateSpan.dataset.after = "Safe!";
       countSpan.dataset.after = "Safe!";
       outBlurb.innerHTML = "Safe!";
+      siteLogo.src = "./images/no_image.jpg";
     } else {
       nameSpan.dataset.after = site.Title;
       dateSpan.dataset.after = site.BreachDate;
       countSpan.dataset.after = site.PwnCount;
       outBlurb.innerHTML = site.Description;
-      siteLogo.src = site.LogoPath;
+      if (site.LogoPath) {
+        siteLogo.src = site.LogoPath;
+      } else {
+        siteLogo.src = "./images/no_image.jpg";
+      }
     }
   });
 
